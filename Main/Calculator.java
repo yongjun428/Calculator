@@ -13,7 +13,7 @@ public class Calculator extends JFrame implements ActionListener {
 
     Calculator() {
         setTitle("계산기");
-        setSize(300, 500);
+        setSize(300, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Case();
