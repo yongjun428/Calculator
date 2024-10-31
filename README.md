@@ -1,112 +1,19 @@
-package Main;
+# 계산기 (Calculator)
+이 프로젝트는 Java Swing을 사용하여 구현한 간단한 계산기 애플리케이션입니다. 덧셈, 뺄셈, 곱셈, 나눗셈과 같은 기본 연산자를 제공합니다.
 
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class Calculator extends JFrame implements ActionListener {
-    JTextField text;
-    String operator; // 연산자 저장
-    double num1, num2, result; // 숫자 및 결과 저장
-
-    Calculator() {
-        setTitle("계산기");
-        setSize(300, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        Case();
-        Result();
-        Num();
-
-        setVisible(true);
-    }
-
-    void Case() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        add(panel);
-
-    }
-
-    void Result() {
-        JPanel panelT = new JPanel();
-        text = new JTextField(30);
-        text.setEditable(false);
-        text.setHorizontalAlignment(JTextField.LEFT);
-        panelT.setBackground(Color.orange);
-        panelT.setForeground(Color.pink);
-
-
-        panelT.add(text);
-        add(panelT, BorderLayout.NORTH);
-    }
-
-    void Num() {
-        JPanel panelN = new JPanel();
-        panelN.setLayout(new GridLayout(4, 4, 2, 2));
-        add(panelN, BorderLayout.CENTER);
-        panelN.setBackground(Color.BLACK);
-
-        String[] NUM = {
-                "7", "8", "9", "+",
-                "4", "5", "6", "-",
-                "1", "2", "3", "/",
-                "0", "=", "C", "*"
-        };
-
-        for (String label : NUM) {
-            JButton button = new JButton(label);
-            button.addActionListener(this);
-            panelN.add(button);
-            button.setBackground(Color.darkGray);
-            button.setForeground(Color.white);
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String command = e.getActionCommand();
-
-        if (command.charAt(0) >= '0' && command.charAt(0) <= '9') {
-            // 숫자 버튼 클릭 시
-            text.setText(text.getText() + command);
-        } else if (command.equals("C")) {
-            // 초기화 버튼 클릭 시
-            text.setText("");
-            num1 = num2 = result = 0;
-            operator = "";
-        } else if (command.equals("=")) {
-            // 계산 버튼 클릭 시
-            num2 = Double.parseDouble(text.getText());
-            switch (operator) {
-                case "+":
-                    result = num1 + num2;
-                    break;
-                case "-":
-                    result = num1 - num2;
-                    break;
-                case "*":
-                    result = num1 * num2;
-                    break;
-                case "/":
-                    result = num1 / num2;
-                    break;
-            }
-            text.setText(String.valueOf(result));
-        } else {
-
-            if (!operator.isEmpty()) {
-                return;
-            }
-            operator = command;
-            num1 = Double.parseDouble(text.getText());
-            text.setText("");
-        }
-    }
-
-    public static void main(String[] args) {
-        new Calculator();
-    }
-}
+## 설명
+-  JFrame을 상속하여 GUI 애플리케이션을 만들었습니다 . ActionListener를 구현하여 버튼 클릭 이벤트를 처리합니다.
+-  JTextField text에 버튼( 입력 값, 결과 값, 연산자)를 보여줍니다.
+-  버튼 패널 설정: 4x4 그리드 레이아웃을 사용하여 버튼 배열을 만듭니다.
+## 버튼
+- "C" :버튼이 클릭되면 모든 입력을 초기화합니다.
+- " 1 ~ 9 " 숫자 버튼이 클릭되면 해당 숫자를 텍스트 필드에 추가합니다.
+- " = " 버튼이 클릭되면 현재 입력된 숫자(num1),(num2)와 저장된 연산자(operator)를 기반으로 계산을 수행하고 결과를 텍스트 필드에 표시합니다. 오류가 발생할 경우 적절한 메시지를 표시합니다.
+- **연산**
+    - 던셈(+)
+    - 뺄셈(-)
+    - 곱셈(x)
+    - 나눗셈(÷)
+- **기능**
+- 연속적인 계산 가능 : 기본적으로 num1, 연산자 , num2 , = ,결과 값이 나오는데
+바로 결과 값에서 연산자, num2 를 이용하여 계산 가능
