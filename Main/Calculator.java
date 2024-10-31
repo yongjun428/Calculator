@@ -5,15 +5,41 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 데이터베이스 연결을 관리하는 싱글톤 클래스입니다.
+ *
+ * @author Kim Yong Jun (igagima2@naver.com)
+ * @version 2.5
+ * @since 1.0
+ *
+ * @created 2024-10-28
+ * @lastModified 2024-10-31
+ *
+ * @changelog
+ * <ul>
+ *   <li>2024-10-28: 최초 생성 및 테스트 (Kim Yong Jun )</li>
+ *  * </ul>>
+ */
+
 public class Calculator extends JFrame implements ActionListener {
     JTextField text;
-    String operator; // 연산자 저장
-    double num1, num2, result; // 숫자 및 결과 저장
+    String operator;
+    double num1, num2, result;
 
     Calculator() {
-        // 초기화
+
         operator = "";
-        num1 = num2 = result = 0;
+
+        /**
+         *
+         * @created 2024-10-28
+         * @lastModified 2024-10-31
+         *
+         * @changelog
+         * <ul>
+         *   <li>2024-10-31: 실행시 초기화가 안되있던  오류 해결 (Kim Yong Jun )</li>
+         * </ul>
+         */
 
         setTitle("계산기");
         setSize(300, 500);
@@ -24,7 +50,9 @@ public class Calculator extends JFrame implements ActionListener {
         Num();
 
         setVisible(true);
+
     }
+
 
     void Case() {
         JPanel panel = new JPanel();
@@ -46,6 +74,17 @@ public class Calculator extends JFrame implements ActionListener {
         panelT.add(text);
         panelT.setPreferredSize(new Dimension(300, 200));
         add(panelT, BorderLayout.NORTH);
+
+        /**
+         *
+        * @created 2024-10-28
+                * @lastModified 2024-10-31
+                *
+     * @changelog
+     * <ul>
+     *   <li>2024-10-31: TextFiled 사이즈 및 폰트 변경 (Kim Yong Jun )</li>
+     * </ul>
+     */
     }
 
     void Num() {
@@ -54,12 +93,14 @@ public class Calculator extends JFrame implements ActionListener {
         add(panelN, BorderLayout.CENTER);
         panelN.setBackground(Color.BLACK);
 
+
         String[] NUM = {
                 "7", "8", "9", "+",
                 "4", "5", "6", "-",
                 "1", "2", "3", "/",
                 "0", "=", "C", "*"
         };
+
 
         for (String label : NUM) {
             JButton button = new JButton(label);
@@ -70,22 +111,34 @@ public class Calculator extends JFrame implements ActionListener {
             button.setBackground(Color.darkGray);
             button.setForeground(Color.white);
         }
+        /**
+         *
+         * @created 2024-10-28
+         * @lastModified 2024-10-31
+         *
+         * @changelog
+         * <ul>
+         *   <li>2024-10-31: Button Size 변경 및 Pont 변경 (Kim Yong Jun )</li>
+         * </ul>
+         */
+
     }
 
     @Override
+
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
 
         if (command.charAt(0) >= '0' && command.charAt(0) <= '9') {
-            // 숫자 버튼 클릭 시
+
             text.setText(text.getText() + command);
         } else if (command.equals("C")) {
-            // 초기화 버튼 클릭 시
+
             text.setText("");
             num1 = num2 = result = 0;
             operator = "";
         } else if (command.equals("=")) {
-            // 계산 버튼 클릭 시
+
             num2 = Double.parseDouble(text.getText());
             try {
                 switch (operator) {
@@ -106,14 +159,14 @@ public class Calculator extends JFrame implements ActionListener {
                         break;
                 }
                 text.setText(String.valueOf(result));
-                operator = ""; // 연산자 초기화
+                operator = "";
             } catch (ArithmeticException ex) {
                 text.setText("오류: " + ex.getMessage());
             }
         } else {
-            // 연산자 버튼 클릭 시
+
             if (!operator.isEmpty()) {
-                // 이미 연산자가 설정되어 있으면 계산 후 새로운 연산자로 변경
+
                 num2 = Double.parseDouble(text.getText());
                 try {
                     switch (operator) {
@@ -137,12 +190,27 @@ public class Calculator extends JFrame implements ActionListener {
                 } catch (ArithmeticException ex) {
                     text.setText("오류: " + ex.getMessage());
                 }
-            }
+            } // @see
 
-            // 새로운 연산자 설정
+
+            /**
+             *
+             * @created 2024-10-28
+             * @lastModified 2024-10-31
+             *
+             * @changelog
+             * <ul>
+             *   <li>2024-10-30: 버튼으로 구현만 되어있는 연산자에 기능을 추가 (Kim Yong Jun )</li>
+             *   <li>2024-10-31: 연속적으로 계산 할 수 있는 기능을 추가 (Kim Yong Jun )</li>
+             * </ul>
+             */
+
+
+
+
             operator = command;
             num1 = Double.parseDouble(text.getText());
-            text.setText(""); // 텍스트 필드 초기화
+            text.setText("");
         }
     }
 
