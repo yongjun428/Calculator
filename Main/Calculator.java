@@ -18,8 +18,8 @@ import java.awt.event.ActionListener;
  * @changelog
  * <ul>
  *   <li>2024-10-28: 최초 생성 및 테스트 (Kim Yong Jun )</li>
- *  * </ul>>
- */
+ *   </ul>>
+ **/
 
 public class Calculator extends JFrame implements ActionListener {
     JTextField text;
@@ -39,7 +39,7 @@ public class Calculator extends JFrame implements ActionListener {
          * <ul>
          *   <li>2024-10-31: 실행시 초기화가 안되있던  오류 해결 (Kim Yong Jun )</li>
          * </ul>
-         */
+         **/
 
         setTitle("계산기");
         setSize(300, 500);
@@ -84,7 +84,7 @@ public class Calculator extends JFrame implements ActionListener {
      * <ul>
      *   <li>2024-10-31: TextFiled 사이즈 및 폰트 변경 (Kim Yong Jun )</li>
      * </ul>
-     */
+     **/
     }
 
     void Num() {
@@ -120,7 +120,7 @@ public class Calculator extends JFrame implements ActionListener {
          * <ul>
          *   <li>2024-10-31: Button Size 변경 및 Pont 변경 (Kim Yong Jun )</li>
          * </ul>
-         */
+         **/
 
     }
 
@@ -203,7 +203,7 @@ public class Calculator extends JFrame implements ActionListener {
              *   <li>2024-10-30: 버튼으로 구현만 되어있는 연산자에 기능을 추가 (Kim Yong Jun )</li>
              *   <li>2024-10-31: 연속적으로 계산 할 수 있는 기능을 추가 (Kim Yong Jun )</li>
              * </ul>
-             */
+             **/
 
 
 
